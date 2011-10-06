@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebUI.Models.Shuttle>
+
+@{
+	ViewBag.Title = "Shuttle List";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shuttles</h2>
+
+<h4 style="color:red">@ViewBag.Message</h4>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Serial</th>
+		<th>Payload</th>
+		<th>LaunchedOn</th>
+		<th>LandedOn</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>@Html.DisplayFor(modelItem => item.Name)</td>
+		<td>@Html.DisplayFor(modelItem => item.SerialNumber)</td>
+		<td>@Html.DisplayFor(modelItem => item.Payload)</td>
+		<td>@Html.DisplayFor(modelItem => item.LaunchedOn)</td>
+		<td>@Html.DisplayFor(modelItem => item.LandedOn)</td>
+		<td>
+			@Html.ActionLink("Control", "Control", new { id=item.Id }) |
+			@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+			@Html.ActionLink("Delete", "Delete", new { id=item.Id })
+		</td>
+	</tr>
+}
+
+</table>
