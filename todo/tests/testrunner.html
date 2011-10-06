@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>QUnit Test Suite</title>
+	
+	<!-- GLOBAL DEPENDENCIES -->
+	<script type="text/javascript" src="../js/lib/json2.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery.js"></script>
+	<script type="text/javascript" src="../js/lib/underscore.js"></script>
+	<script type="text/javascript" src="../js/lib/backbone.js"></script>
+	<script type="text/javascript" src="../js/lib/backbone-localstorage.js"></script>
+	
+	<!-- TEST FRAMEWORK -->
+	<link rel="stylesheet" href="lib/qunit.css" type="text/css" media="screen">
+	<script type="text/javascript" src="lib/qunit.js"></script>
+	
+	<!-- SCRIPTS TO TEST -->
+	<script type="text/javascript" src="../js/models/Todo.js"></script>
+	<script type="text/javascript" src="js/models/Todo.tests.js"></script>
+	
+	<script type="text/javascript" src="../js/models/TodoList.js"></script>
+	<script type="text/javascript" src="js/models/TodoList.tests.js"></script>
+	
+	<script type="text/javascript" src="../js/views/TodoView.js"></script>
+	<script type="text/javascript" src="js/views/TodoView.tests.js"></script>
+	
+	<script type="text/javascript" src="../js/views/AppView.js"></script>
+	<script type="text/javascript" src="js/views/AppView.tests.js"></script>
+</head>
+<body>
+	<h1 id="qunit-header">QUnit Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">
+
+		<!-- SCRIPTS DOM FIXTURES--> 
+		<div id="TodoView">
+			<script type="text/template" id="item-template">
+			  <div class="todo <%= done ? 'done' : '' %>">
+				<div class="display">
+				  <input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+				  <div class="todo-text"></div>
+				  <span class="todo-destroy"></span>
+				</div>
+				<div class="edit">
+				  <input class="todo-input" type="text" value="" />
+				</div>
+			  </div>
+			</script>
+			<ul></ul>
+		</div>
+
+	</div>
+</body>
+</html>
