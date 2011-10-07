@@ -11,26 +11,50 @@ using ShuttleControl.Repositories.Impl;
 
 namespace ShuttleControl.UnitTests.Repositories
 {
-	[TestFixture]
-	public class ShuttleRepositoryTests
-	{
-		[Test]
-		public void GetAll_GetsModelsFromDatabase()
-		{
-			// Align
-			var mockMemoryDb = new Mock<MemoryDbWrapper>();
-			mockMemoryDb.Setup(memoryDb => memoryDb.SelectAll())
-				.Returns(new Shuttle[0])
-				.Verifiable();
 
-			var repository = new ShuttleRepository(mockMemoryDb.Object);
 
-			// Act
-			var result = repository.GetAll();
 
-			// Assert
-			Assert.AreEqual(new Shuttle[0], result);
-			mockMemoryDb.VerifyAll();
-		}
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// Working Code
+
+	////[TestFixture]
+	////public class ShuttleRepositoryTests
+	////{
+	////    [Test]
+	////    public void GetAll_GetsModelsFromDatabase()
+	////    {
+	////        // Align
+	////        var mockMemoryDb = new Mock<MemoryDbWrapper>();
+	////        mockMemoryDb.Setup(memoryDb => memoryDb.SelectAll())
+	////            .Returns(new Shuttle[0])
+	////            .Verifiable();
+
+	////        var repository = new ShuttleRepository(mockMemoryDb.Object);
+
+	////        // Act
+	////        var result = repository.GetAll();
+
+	////        // Assert
+	////        Assert.AreEqual(new Shuttle[0], result);
+	////        mockMemoryDb.VerifyAll();
+	////    }
+	////}
 }
