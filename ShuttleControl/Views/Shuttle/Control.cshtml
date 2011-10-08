@@ -1,4 +1,4 @@
-﻿@model WebUI.Models.Shuttle
+﻿@model ShuttleControl.Models.Shuttle
 
 @{
 	ViewBag.Title = "Shuttle Control";
@@ -39,42 +39,46 @@
 </fieldset>
 <p>
 	@if (Model.IsReadyToLaunch()) {
-		<a href="javascript:shuttle.launch('@Model.Id')">Launch</a> 
-	} 
-	@if (Model.IsReadyToLand()) {
-		<a href="javascript:shuttle.land('@Model.Id')">Land</a> 
+		@Html.ActionLink("Launch", "Launch", new { id = Model.Id })
 	}
-	@if (Model.IsReadyToLoad()) {
-		<a href="javascript:shuttle.load('@Model.Id')">Load Payload</a> 
+	@if (Model.IsReadyToLand())
+	{
+		@Html.ActionLink("Land", "Land", new { id = Model.Id })
 	}
-	@if (Model.IsReadyToRelease()) {
-		<a href="javascript:shuttle.release('@Model.Id')">Release Payload</a> 
+	@if (Model.IsReadyToLoad())
+	{
+		<a href="javascript:loadShuttle()">Load Payload</a> 
+	}
+	@if (Model.IsReadyToRelease())
+	{
+		@Html.ActionLink("Release Payload", "Release", new { id = Model.Id })
 	}
 	|	
-	@Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
 	@Html.ActionLink("Back to List", "Index")
 </p>
 
-<div id="launch-modal" Title="Closed-Circuit Feed" style="display:none">
-	<iframe width="560" height="315" src="http://www.youtube.com/embed/KBLPkxhSGlM?autoplay=1&rel=0&border=0&start=33" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<div id="release-modal" Title="Closed-Circuit Feed" style="display:none">
-	<iframe width="560" height="315" src="http://www.youtube.com/embed/emmCNdZZqng?autoplay=1&rel=0&border=0" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<div id="land-modal" Title="Closed-Circuit Feed" style="display:none">
-	<iframe width="560" height="315" src="http://www.youtube.com/embed/-R2dCWZ92ew?autoplay=1&rel=0&border=0&start=33" frameborder="0" allowfullscreen></iframe>
-</div>
+<script type="text/javascript">
+function loadShuttle() {
+	 $("#dialog:ui-dialog").dialog("destroy");
+	 $("#load-modal").dialog({
+		 modal: true,
+		 close: function () {
+			$('#loadpayload-form').submit();
+		}
+	 });
+}
+</script>
 
 <div id="load-modal" Title="Enter Payload" style="display:none">
 	@using (Html.BeginForm("Load", "Shuttle", FormMethod.Post, new {id="loadpayload-form"}))
 	{
 		@Html.HiddenFor(model => model.Id)
-	 
+
 		<fieldset>
 			<label for="payload">Payload</label>
 			<input type="text" name="payload" class="text ui-widget-content ui-corner-all" />
+			<input type="submit" value="Load" />
 		</fieldset>
 	}
 </div>
